@@ -14,6 +14,7 @@ def add_methods(parser):
         dest='method',
         description='Metodo a utilizar para obtener la raiz de la funcion'
     )
+    methods.required = True
     add_bisection_method(methods)
     add_fixed_point_method(methods)
     add_newton_raphson_method(methods)
