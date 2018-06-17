@@ -4,6 +4,7 @@ Resolución al problema plateado en el tp de matemática superior del primer cua
 * Collado, Juan María
 * Sosa, Ignacio
 * Cricelli, Marco Andres
+* Julián Freire
 # Requisitos
 * Python 3.6
 # Ejecución
