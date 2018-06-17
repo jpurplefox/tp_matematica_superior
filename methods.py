@@ -17,11 +17,7 @@ class Bisection:
             if self.get_error(self.valor_anterior) <= 0.00001:
                 raise StopIteration()
 
-            try:
-                self.bolzano_check(self.valor_anterior, self.valor_maximo)
-                self.valor_minimo = self.valor_anterior
-            except BolzanoException:
-                self.valor_maximo = self.valor_anterior
+            self.make_new_interval()
 
         self.valor_anterior = (self.valor_minimo + self.valor_maximo) / 2
         return self.valor_anterior
@@ -36,3 +32,9 @@ class Bisection:
     def get_error(self, valor):
         return abs(self.func(valor))
         
+    def make_new_interval(self):
+        try:
+            self.bolzano_check(self.valor_anterior, self.valor_maximo)
+            self.valor_minimo = self.valor_anterior
+        except BolzanoException:
+            self.valor_maximo = self.valor_anterior
