@@ -14,7 +14,7 @@ python resolver.py biseccion [a] [b]
 ```
 Para resolver con metodo de punto fijo
 ```
-python resolver.py punto-fijo [inicial]
+python resolver.py punto-fijo [a] [b]
 ```
 Para resolver con metodo de Newton-Raphson
 ```
