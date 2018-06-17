@@ -14,9 +14,10 @@ class TestUM(unittest.TestCase):
         self.assertEqual(args.b, 2)
  
     def test_fixed_point_parser(self):
-        args = self.parser.parse_args(['punto-fijo', '1'])
+        args = self.parser.parse_args(['punto-fijo', '1', '2'])
         self.assertEqual(args.method, 'punto-fijo')
-        self.assertEqual(args.inicial, 1)
+        self.assertEqual(args.a, 1)
+        self.assertEqual(args.b, 2)
  
     def test_newton_raphson_parser(self):
         args = self.parser.parse_args(['newton-raphson', '1'])

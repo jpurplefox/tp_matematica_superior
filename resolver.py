@@ -11,6 +11,6 @@ if __name__ == '__main__':
             pass
         print(f'Se obtuvo el valor {valor} en {i} iteraciones')
     if args.method == 'punto-fijo':
-        print(f'Resolviendo por punto fijo con valor inicial {args.inicial}')
+        print(f'Resolviendo por punto fijo con intervalo [{args.a}, {args.b}]')
     if args.method == 'newton-raphson':
         print(f'Resolviendo por Newton-Raphson con valor inicial {args.inicial}')
