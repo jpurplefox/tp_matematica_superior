@@ -1,7 +1,7 @@
 import unittest
 
 from parsers import get_parser
-from methods import Bisection
+from methods import Bisection, FixedPoint
  
 class TestUM(unittest.TestCase):
  
@@ -30,4 +30,10 @@ class TestUM(unittest.TestCase):
         self.assertEqual(next(bisection), 1.5)
         self.assertEqual(next(bisection), 1.25)
         self.assertEqual(bisection.get_error(), 0.4375)
+
+    def test_fixed_point(self):
+        fixed_point = FixedPoint(lambda x: x**2 - 2, 1, 2)
+        self.assertEqual(round(next(fixed_point), 3), 1.333)
+        self.assertEqual(next(fixed_point), 1.4)
+        self.assertEqual(round(fixed_point.get_error(), 3), 0.04)
 
