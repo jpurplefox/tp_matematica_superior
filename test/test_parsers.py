@@ -1,6 +1,7 @@
 import unittest
 
 from parsers import get_parser
+from methods import Bisection
  
 class TestUM(unittest.TestCase):
  
@@ -23,3 +24,10 @@ class TestUM(unittest.TestCase):
         args = self.parser.parse_args(['newton-raphson', '1'])
         self.assertEqual(args.method, 'newton-raphson')
         self.assertEqual(args.inicial, 1)
+
+    def test_bisection(self):
+        bisection = Bisection(lambda x: x**2 - 2, 1, 2)
+        self.assertEqual(next(bisection), 1.5)
+        self.assertEqual(next(bisection), 1.25)
+        self.assertEqual(bisection.get_error(), 0.4375)
+
