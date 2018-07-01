@@ -59,13 +59,16 @@ class Bisection(IntervalMethod):
     def get_next_value(self):
         return round((self.valor_minimo + self.valor_maximo) / 2, self.redondeo)
 
-class FixedPoint(IntervalMethod):
-    def get_next_value(self):
-        a = self.valor_minimo
-        b = self.valor_maximo
-        f = self.func
+class FixedPoint(Method):
+    def __init__(self, func, fixed_point_function, initial_value, redondeo):
+        super().__init__(func)
+        self.valor_anterior = initial_value
+        self.fixed_point_function = fixed_point_function
+        self.redondeo = redondeo
 
-        return round(b - (b-a)/(f(b)-f(a)) * f(b), self.redondeo)
+    def __next__(self):
+        self.valor_anterior = round(self.fixed_point_function(self.valor_anterior), self.redondeo)
+        return self.valor_anterior
 
 class NewtonRaphson(Method):
     def __init__(self, func, derivative, initial_value, redondeo):
