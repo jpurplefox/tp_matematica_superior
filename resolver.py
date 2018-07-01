@@ -5,19 +5,30 @@ if __name__ == '__main__':
     parser = get_parser()
     args = parser.parse_args()
     function = lambda x: 3143680 - 2*2**x - 51200*x
-    derivative = lambda x: -2**x*0.69314718 - 51200
-    error_esperado = 0.00001
+    derivative = lambda x: - 2*2**x*0.69314718 - 51200
+    error_esperado = args.error
 
     if args.method == 'biseccion':
-        method = Bisection(function, args.a, args.b)
+        method = Bisection(function, args.a, args.b, args.redondeo)
     if args.method == 'punto-fijo':
-        method = FixedPoint(function, args.a, args.b)
+        method = FixedPoint(function, args.a, args.b, args.redondeo)
     if args.method == 'newton-raphson':
-        method = NewtonRaphson(function, derivative, args.inicial)
+        method = NewtonRaphson(function, derivative, args.inicial, args.redondeo)
 
+    valor_anterior = 0
     for i, valor in enumerate(method, 1):
-        if method.get_error() <= error_esperado:
+        if args.corte == 'abs':
+            error = abs(valor_anterior - valor)
+        elif args.corte == 'rel':
+            error = abs((valor_anterior - valor) / valor)
+        elif args.corte == 'funct-val':
+            error = abs(function(valor))
+        error = round(error, args.redondeo)
+        print(f'n={i}, xn-1={valor_anterior}, xn={valor}, e={error} {method.get_info()}')
+        if error <= error_esperado:
             break
+
+        valor_anterior = valor
 
     print(f'Se obtuvo el valor {valor} en {i} iteraciones')
 

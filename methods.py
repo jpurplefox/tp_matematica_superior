@@ -13,14 +13,18 @@ class Method:
     def get_error(self):
         return abs(self.func(self.valor_anterior))
 
+    def get_info(self):
+        return ''
+
 class BolzanoException(Exception):
     pass
 
 class IntervalMethod(Method):
-    def __init__(self, func, valor_minimo, valor_maximo):
+    def __init__(self, func, valor_minimo, valor_maximo, redondeo):
         super().__init__(func)
         self.valor_minimo = valor_minimo
         self.valor_maximo = valor_maximo
+        self.redondeo = redondeo
         self.bolzano_check(self.valor_minimo, self.valor_maximo)
 
     def __next__(self):
@@ -48,9 +52,12 @@ class IntervalMethod(Method):
         except BolzanoException:
             self.valor_maximo = self.valor_anterior
 
+    def get_info(self):
+        return f'[{self.valor_minimo}, {self.valor_maximo}]'
+
 class Bisection(IntervalMethod):
     def get_next_value(self):
-        return (self.valor_minimo + self.valor_maximo) / 2
+        return round((self.valor_minimo + self.valor_maximo) / 2, self.redondeo)
 
 class FixedPoint(IntervalMethod):
     def get_next_value(self):
@@ -58,18 +65,19 @@ class FixedPoint(IntervalMethod):
         b = self.valor_maximo
         f = self.func
 
-        return b - (b-a)/(f(b)-f(a)) * f(b)
+        return round(b - (b-a)/(f(b)-f(a)) * f(b), self.redondeo)
 
 class NewtonRaphson(Method):
-    def __init__(self, func, derivative, initial_value):
+    def __init__(self, func, derivative, initial_value, redondeo):
         super().__init__(func)
         self.valor_anterior = initial_value
         self.derivative = derivative
+        self.redondeo = redondeo
 
     def __next__(self):
         valor_anterior = self.valor_anterior
         func = self.func
         derivative = self.derivative
         self.valor_anterior = valor_anterior - func(valor_anterior)/derivative(valor_anterior)
-        return self.valor_anterior
+        return round(self.valor_anterior, self.redondeo)
 

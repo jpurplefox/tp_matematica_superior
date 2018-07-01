@@ -24,14 +24,24 @@ def add_bisection_method(methods):
     bisection_parser = methods.add_parser('biseccion')
     bisection_parser.add_argument('a', type=int, help='Primer punto del intervalo a aplicar el metodo')
     bisection_parser.add_argument('b', type=int, help='Segundo punto del intervalo a aplicar el metodo')
+    bisection_parser.add_argument('--corte', choices=['abs', 'rel', 'funct-val'], default='abs')
+    bisection_parser.add_argument('--error', type=float, default=0.00001)
+    bisection_parser.add_argument('--redondeo', type=int, default=6)
 
 def add_fixed_point_method(methods):
     """Agrega el método de punto fijo al parser"""
     fixed_point_parser = methods.add_parser('punto-fijo')
     fixed_point_parser.add_argument('a', type=int, help='Primer punto del intervalo a aplicar el metodo')
     fixed_point_parser.add_argument('b', type=int, help='Segundo punto del intervalo a aplicar el metodo')
+    fixed_point_parser.add_argument('--corte', choices=['abs', 'rel', 'funct-val'], default='abs')
+    fixed_point_parser.add_argument('--error', type=float, default=0.00001)
+    fixed_point_parser.add_argument('--redondeo', type=int, default=6)
 
 def add_newton_raphson_method(methods):
     """Agrega el método de Newton Raphson al parser"""
     newton_raphson_parser = methods.add_parser('newton-raphson')
     newton_raphson_parser.add_argument('inicial', type=int, help='Valor inicial a usar al aplicar el metodo')
+    newton_raphson_parser.add_argument('--corte', choices=['abs', 'rel', 'funct-val'], default='abs')
+    newton_raphson_parser.add_argument('--error', type=float, default=0.00001)
+    newton_raphson_parser.add_argument('--redondeo', type=int, default=6)
+

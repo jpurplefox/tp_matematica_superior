@@ -26,3 +26,13 @@ python resolver.py -h
 ```
 python resolver.py [metodo] -h
 ```
+Opcionalmente se puede cambiar el criterio de corte, cota de error y redondeo utilizado
+```
+python resolver.py biseccion [a] [b] --corte abs --error 0.00001 --redondeo 6
+```
+Los criterios de corte pueden elegirse entre [abs, rel, funct-val]
+Los valores por defecto son:
+* Criterio de corte: abs
+* Error: 0.00001
+* Redondeo: 6
+
