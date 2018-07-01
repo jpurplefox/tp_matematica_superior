@@ -27,6 +27,8 @@ if __name__ == '__main__':
         print(f'n={i}, xn-1={valor_anterior}, xn={valor}, e={error} {method.get_info()}')
         if error <= error_esperado:
             break
+        if i >= 1000:
+            break
 
         valor_anterior = valor
 
