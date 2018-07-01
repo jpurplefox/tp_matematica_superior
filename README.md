@@ -2,7 +2,7 @@
 Resolución al problema plateado en el tp de matemática superior del primer cuatrimestre del 2018
 # Integrantes
 * Collado, Juan María
-* Sosa Celman, Ignacio
+* Sosa Celman, Ignacio Hernán
 * Castillo, Marco Andres
 # Requisitos
 * Python 3.6
