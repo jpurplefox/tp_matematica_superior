@@ -1,7 +1,7 @@
 # TP Matemática superior
 Resolución al problema plateado en el tp de matemática superior del primer cuatrimestre del 2018
 # Integrantes
-* Collado, Juan María
+* Collado, Jésica
 * Sosa Celman, Ignacio Hernán
 * Castillo, Marco Andres
 # Requisitos
